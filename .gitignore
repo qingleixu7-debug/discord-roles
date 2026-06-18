@@ -1,0 +1,10 @@
+.env
+*.pyc
+__pycache__/
+output/
+*.log
+.DS_Store
+.venv/
+venv/
+*.json
+!package.json
