@@ -122,7 +122,7 @@ open .env   # 用文本编辑器打开，把 DISCORD_USER_TOKEN= 后面填上你
 
 # 4. 把项目注册为 Claude Code 用户 skill（用符号链接，方便以后 git pull 自动同步）
 mkdir -p ~/.claude/skills
-ln -sf "$(pwd)" ~/.claude/skills/medeo-discord-roles
+ln -sf "$(pwd)" ~/.claude/skills/discord-roles
 ```
 
 ### 在 Claude Code 里使用
@@ -133,7 +133,7 @@ ln -sf "$(pwd)" ~/.claude/skills/medeo-discord-roles
 
 或者用斜杠命令：
 
-> /medeo-discord-roles
+> /discord-roles
 
 Claude 会自动调用脚本，约 30–60 秒后用 markdown 表格回复完整数据（三组合计带 ✅ 校验）。
 

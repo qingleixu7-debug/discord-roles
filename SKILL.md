@@ -1,5 +1,5 @@
 ---
-name: medeo-discord-roles
+name: discord-roles
 description: Fetch real-time identity group / role distribution from the Medeo AI Discord community. Use whenever the user asks for Medeo Discord 身份组分布 / role stats / community member breakdown, or wants to update the role-distribution section of a Medeo biweekly report.
 ---
 
