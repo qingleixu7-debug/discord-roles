@@ -99,6 +99,55 @@ JSON 输出示例：
 
 `AI-Artist` 当前因历史原因有两个 role ID（`1466704701742518313` 和 `1467264615762231450`），脚本会自动按用户去重，确保同一个人不会被算两次。
 
+## 作为 Claude Code Skill 使用
+
+本项目自带 `SKILL.md`，可直接挂载为 Claude Code 的自定义 skill，让 Claude 在你说「查 Medeo 身份组」时自动运行脚本并整理结果。
+
+### 一次性安装（约 3 分钟）
+
+打开你电脑的「终端」（Terminal），把下面 4 行**一行一行**粘贴回车：
+
+```bash
+# 1. 把项目克隆到你常用的工作目录（这里以 ~/Code 为例）
+mkdir -p ~/Code && cd ~/Code
+git clone https://github.com/<上传者用户名>/medeo-discord-roles.git
+cd medeo-discord-roles
+
+# 2. 安装 Python 依赖
+pip install -r requirements.txt
+
+# 3. 配置 token
+cp .env.example .env
+open .env   # 用文本编辑器打开，把 DISCORD_USER_TOKEN= 后面填上你的 Discord token
+
+# 4. 把项目注册为 Claude Code 用户 skill（用符号链接，方便以后 git pull 自动同步）
+mkdir -p ~/.claude/skills
+ln -sf "$(pwd)" ~/.claude/skills/medeo-discord-roles
+```
+
+### 在 Claude Code 里使用
+
+打开任意 Claude Code 会话，直接说：
+
+> 查一下 Medeo 当前身份组分布
+
+或者用斜杠命令：
+
+> /medeo-discord-roles
+
+Claude 会自动调用脚本，约 30–60 秒后用 markdown 表格回复完整数据（三组合计带 ✅ 校验）。
+
+### 更新到最新版本
+
+```bash
+cd ~/Code/medeo-discord-roles
+git pull
+```
+
+因为是符号链接，pull 完直接生效，不用重新注册。
+
+---
+
 ## 工作原理
 
 Discord 的 REST API（`GET /guilds/{id}/members`）对**用户 token**返回 403，仅 Bot token 可用。本工具改走 Gateway WebSocket 协议：
